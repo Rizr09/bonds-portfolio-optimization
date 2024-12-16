@@ -15,34 +15,47 @@ st.set_page_config(
 
 # Title and Description
 st.subheader("Mathematical Model")
-st.write("The optimization in this application is based on a **Mean-Variance Optimization (MVO)** framework, which aims to balance returns and risks in a portfolio. The mathematical formulation used is as follows:")
+st.write(
+    """
+    The optimization in this application is based on a **Mean-Variance Optimization (MVO)** framework, 
+    which aims to balance returns and risks in a portfolio. The mathematical formulation used is as follows:
+    """
+)
 
 # Objective Function
 st.subheader("Objective Function")
-st.latex(r"Maximize R_p - \lambda \cdot \sigma_p^2")
+st.latex(r"Maximize \ R_{p} - \lambda \cdot \sigma_{p}^2")
 st.write("Where:")
-st.write("- **R_p**: Expected portfolio return, calculated as:")
-st.latex(r"R_p = \mathbf{w}^\top \mathbf{r}")
-st.write("- **w**: Weight vector of portfolio allocation.")
-st.write("- **r**: Vector of individual bond yields.")
-st.write("- **λ**: Risk aversion coefficient, a user-defined parameter to control the trade-off between return and risk.")
-st.write("- **σ_p^2**: Portfolio risk (variance), computed as:")
-st.latex(r"\sigma_p^2 = \mathbf{w}^\top \mathbf{\Sigma} \mathbf{w}")
-st.write("Where **Σ** is the covariance matrix of bond price changes.")
+st.write(
+    """
+    - **Rₚ**: Expected portfolio return, calculated as:
+    """
+)
+st.latex(r"R_{p} = \mathbf{w}^\top \mathbf{r}")
+st.write(
+    """
+    - **w**: Weight vector of portfolio allocation.
+    - **r**: Vector of individual bond yields.
+    - **λ**: Risk aversion coefficient, a user-defined parameter to control the trade-off between return and risk.
+    - **σₚ²**: Portfolio risk (variance), computed as:
+    """
+)
+st.latex(r"\sigma_{p}^2 = \mathbf{w}^\top \mathbf{\Sigma} \mathbf{w}")
+st.write("Where **\u03A3** is the covariance matrix of bond price changes.")
 
 # Constraints
 st.subheader("Constraints")
-st.latex(r"""
-\begin{aligned}
-1. & \quad \sum_{i} w_i = 1 \quad \text{(Total portfolio weight must equal 1)} \\
-2. & \quad w_i \geq 0 \quad \text{(No short selling allowed)} \\
-3. & \quad w_i \leq \text{Max Position Size} \quad \text{(Limit on maximum exposure to any single bond)} \\
-4. & \quad R_p \geq \text{Min Return} \quad \text{(Minimum portfolio return constraint)} \\
-5. & \quad \mathbf{w}^\top \mathbf{q} \geq \text{Min Rating Score} \quad \text{(Minimum average rating score for the portfolio)} \\
-\end{aligned}
-""")
-st.write("This ensures a well-diversified portfolio that balances risk and return while adhering to investment constraints.")
-
+st.latex(
+    r"""
+    \begin{aligned}
+    1. & \quad \sum_{i} w_{i} = 1 \quad \text{(Total portfolio weight must equal 1)} \\
+    2. & \quad w_{i} \geq 0 \quad \text{(No short selling allowed)} \\
+    3. & \quad w_{i} \leq \text{Max Position Size} \quad \text{(Limit on maximum exposure to any single bond)} \\
+    4. & \quad R_{p} \geq \text{Min Return} \quad \text{(Minimum portfolio return constraint)} \\
+    5. & \quad \mathbf{w}^\top \mathbf{q} \geq \text{Min Rating Score} \quad \text{(Minimum average rating score for the portfolio)} \\
+    \end{aligned}
+    """
+)
 
 # Sidebar for Data Upload
 st.sidebar.header("1. Upload Data Files")
